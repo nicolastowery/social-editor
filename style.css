@@ -1,0 +1,576 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* default is content-box which will cause padding to be added to the width, not inducted in */
+}
+
+button {
+    border: initial;
+    background-color: initial;
+    color: inherit;
+    font: inherit;
+    outline: none; /* make sure there is a visual indicator for focus state */
+}
+
+/* KEYFRAMES */
+@keyframes fade-in-from-top {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px); /* sits where it should with 0px */
+    }
+}
+
+@keyframes fade-in-from-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px); /* sits where it should with 0px */
+    }
+}
+
+@keyframes fade-in-from-right {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px); /* sits where it should with 0px */
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes make-smaller {
+    0% {
+        height: 100%;
+        width: 100%;
+    }
+
+    100% {
+        height: 75%;
+        width: 78%;
+
+    }
+}
+
+/* BASE STYLES */
+.app{
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: white;
+    height: 100vh; /* viewport height */
+    width: 100vw; /* viewport width */
+}
+
+.app__container {
+    height: calc(100vh - 55px); /* subtracting the height of the header */ 
+    display: flex;
+}
+
+/* STYLES */
+.header {
+    background-image: linear-gradient(to right, #18A0BE, #622DB9);
+    height: 55px;
+    display: flex; /* flex container */
+}
+
+.logo {
+    align-self: center; /* flexbox automatically streches images */
+    margin-left: 20px;
+    margin-right: 30px;
+    animation: fade-in-from-top 0.5s;
+}
+
+.dd-toggle {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0 13px; /*top-bottom right-left*/
+    cursor: pointer;
+    transition: all 0.4s; /* for all properties that get changed */
+    animation: fade-in-from-top 0.5s;
+}
+
+.dd-toggle:hover {
+    color: #FFF;
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+.dd-toggle:focus {
+    color: #FFF;
+    background-color: rgba(255, 255, 255, 0.07); 
+}
+
+.dd-toggle:nth-of-type(4){ /* fourth dd-toggle element */
+    margin-left: auto;
+}
+
+.dd-toggle:last-child{
+    display: flex;
+    align-items: center; /* center aligns flex children vertically*/
+}
+
+.dd-toggle__icon {
+
+}
+
+.dd-toggle__img {
+    height: 30px;
+    width: 30px;
+    object-fit: cover; /*matches inherirt aspect ratio of the image*/
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+.dd-toggle__text {
+
+}
+
+/* ------------------ */
+
+.sidebar {
+    background-color: #10171A;
+    width: 75px; /* unlike flex, this will statically remain the same size in the flex container */
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+
+}
+
+.menu__button {
+    padding: 19px 0px;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column; /* swaps justify-content and align-items*/
+    align-items: center; /* aligns horizontally because flex-direction: column*/
+    width: 100%; 
+    transition: all 0.4s;
+    animation: fade-in-from-left 0.5s;
+}
+
+.menu__button:hover { /* hover is referred to as a "pseudoclass" */
+    background-color: #2B363C;
+    color: white;
+    cursor: pointer;
+}
+
+.menu__button:focus {
+    background-color: #2B363C;
+    color: white;
+    cursor: pointer;
+}
+
+.menu__button--active {
+    background-color: #2B363C;
+    color: white;
+    position: relative; /* needed for top and left properties of ::before styling */
+}
+
+.menu__button--active::before {
+    content: ''; /* needed in order to work */
+    width: 3px;
+    height: 100%;
+    background-color: #375BB6;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.menu__icon {
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.menu__text {
+    font-weight: 500; /* makes text a bit more bold */
+    font-size: 12px;
+}
+
+.footer {
+    margin-top: auto; /* pushes footer down to the bottom only because it is in a flex container */
+    margin-bottom: 60px;
+    transform: rotate(-90deg); /* rotates text */
+    white-space: nowrap;
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 12px;
+}
+
+/* ------------------ */
+
+.panel {
+    background-color: #2B363C;
+    width: 350px; /* unlike flex, this will statically remain the same size in the flex container */
+    padding: 15px 31px; /* top bottom */
+}
+
+.panel__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* adds as much space between the flex items as possible (could have used margin-auto trick)*/
+    border-bottom: 1px solid #4B5155;
+    padding-bottom: 12px;
+}
+
+.first-heading {
+    font-size: 18px;
+    font-weight: 400; /* this weight will decrease the boldness of the h1 tag */
+}
+
+.panel__collapse-icon {
+    color: #6B7276;
+    cursor: pointer;
+}
+
+.panel__images {
+    padding: 25px 0;
+    display: flex;
+    flex-wrap: wrap; /* allows flex items to wrap onto new lines */
+    gap: 8px; /* not supported by all browsers caniuse.com */
+}
+
+.panel__img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover; /* will not distort the image */
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.2s;
+    animation: fade-in 1s;
+}
+
+.panel__img:nth-child(2) {
+    animation: fade-in 1s 0.1s backwards; /* third property adds a delay */
+}
+
+.panel__img:nth-child(3) {
+    animation: fade-in 1s 0.2s backwards; /* third property adds a delay */
+}
+
+.panel__img:nth-child(4) {
+    animation: fade-in 1s 0.3s backwards; /* third property adds a delay */
+}
+
+.panel__img:nth-child(5) {
+    animation: fade-in 1s 0.4s backwards; /* third property adds a delay */
+}
+
+
+.panel__img:hover {
+    transform: scale(1.05) /* 5% bigger */
+}
+
+.panel__btn {
+    width: 140px;
+    height: 140px;
+    border-radius: 7px;
+    background-color: #333e44;
+    cursor: pointer;
+    animation: fade-in 1s 0.5s backwards; /* third property adds a delay */
+}
+
+.panel__btn:hover,
+.panel__btn:focus { /* can have multiple selectors */
+    background-color: #404C52;
+    transition: all 0.2s;
+}
+
+.panel__upload-icon {
+    font-size: 25px; /* font awesome icons are treated like text */
+    color: #21292D;
+}
+/* ------------------ */
+
+.main {
+    background-color: #EDF1F3;
+    flex: 1; /* Since it is the only child with the flex property, it will dynamically take up all remaining space within the flex container*/
+}
+
+.info-bar {
+    height: 50px;
+    background-color: #fff; /*with hex code, if your last three characters are the same as the first three, you only need to write the first three */
+    border-bottom: 1px solid D6DDE1;
+    padding: 0 30px;
+    display: flex;
+    align-items: center; /* default value is stretch */
+    justify-content: space-between;
+}
+
+.breadcrumbs {
+    text-transform: uppercase; /*__link and __name inherit so we only have to write once*/
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+
+.breadcrumbs__link {
+    color: #A6ADB1;
+    text-decoration: none;
+}
+
+.breadcrumbs__icon {
+    color: #A6ADB1;
+    margin: 0 13px;
+}
+
+.breadcrumbs__name {
+    color: #2E3335;
+    font-weight: 500;
+}
+
+.button {
+    background-color: #375BB6;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 20px;
+    cursor: pointer;
+    border-radius: 500px;
+    transition: all 0.4s;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #26438D;
+}
+
+.artboard {
+    height: calc(100vh - 50px - 55px); /* be default the height wont extend to the bottom of the page, to center it, on the page, we need a larger height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -25px; /* another method of translating elements on the page */
+    column-gap: 20px;
+}
+
+.canvas {
+    height: 57.5vh; /* relative to the uesr's viewport height */
+    width: 48.6vw;
+    position: relative;
+    border: 1px solid #fff;
+    border-radius: 3px;
+}
+
+.canvas__bg-img {
+    height: 100%; /* relative to parent element */
+    width: 100%;
+    object-fit: cover; /* img will be streched by default when changing aspect ratio */
+    opacity: 0.15;
+}
+
+.canvas__fg-img {
+    height: 75%;
+    width: 78%;
+    object-fit: cover;
+    border-radius: 3px;
+    position: absolute; /* other elements will act as if this element does not exist */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centers element within an element */
+    border: 1px solid #fff;
+    cursor: grab;
+    animation: make-smaller 1s 0.2s backwards; /* first number is duration, second is delay, backwards makes sure that during the delay, the 100% value of the keyframe was initialized */
+}
+
+.canvas__circle {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    animation: fade-in 1s 1s backwards;
+}
+
+.canvas__circle:nth-of-type(1) {
+    top: 11.5%;
+    left: 10.4%;
+    cursor: nw-resize;
+}
+
+.canvas__circle:nth-of-type(2) {
+    top: 11.5%;
+    right: 10.4%;
+    cursor: sw-resize;
+}
+
+.canvas__circle:nth-of-type(3) {
+    bottom: 11.5%;
+    left: 10.4%;
+    cursor: sw-resize;
+}
+
+.canvas__circle:nth-of-type(4) {
+    bottom: 11.5%;
+    right: 10.4%;
+    cursor: nw-resize;
+}
+
+.tools {
+    height: 57.5vh; /* same height as canvas */
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    animation: fade-in-from-right 0.5s;
+}
+
+.tool {
+    background-color: #E1E6E9;
+    height: 44px;
+    width: 44px;
+    border-radius: 8px;
+    color: #404446;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.tool--active{
+    background-color: #2B363B;
+    color: #fff;
+}
+
+.tool:last-child {
+    margin-top: auto;
+}
+
+.tool:hover,
+.tool:focus {
+    background-color: #2B363B;
+    color: #fff;
+}
+
+.tool__icon {
+
+}
+
+/*  MEDIA QUERIES */
+@media (max-width: 1200px) {
+    .app__container{
+        height: initial;
+        min-height: 100vh; /* makes sure that the app__container is at least 100% of the viewport height */
+    }
+
+    .panel {
+        display: none; /* removes an HTML element */
+    }
+
+    .canvas {
+        width: 67vw; /* since there is more whitespace, take up more of it */
+    }
+}
+
+@media (max-width: 1000px) {
+    .sidebar {
+        display: none;
+    }
+
+    .info-bar {
+        padding: 0 20px;
+    }
+
+    .artboard{
+        padding: 0 20px;
+        margin-top: 0; /* remove negative margin-top pulling it up */
+        height: initial;
+        padding: 50px 20px;
+    }
+
+    .canvas {
+        width: 100%;
+        height: 500px; /* independent of viewport height */
+    }
+
+    .tools{
+        height: 500px;
+    }
+}
+
+@media (max-width: 580px) {
+    .dd-toggle:nth-of-type(1),
+    .dd-toggle:nth-of-type(2),
+    .dd-toggle:nth-of-type(3) {
+        display: none;
+    }
+
+    .artboard {
+        flex-direction: column;
+    }
+
+    .canvas {
+        order: 2;
+        height: 450px;
+    }
+
+    .canvas__circle:nth-of-type(1){
+        top: 11.5%;
+        left: 9.8%
+    }
+
+    .canvas__circle:nth-of-type(2){
+        top: 11.5%;
+        right: 9.8%
+    }
+
+    .canvas__circle:nth-of-type(3){
+        bottom: 11.5%;
+        right: 9.8%
+    }
+
+    .canvas__circle:nth-of-type(4){
+        bottom: 11.5%;
+        left: 9.8%
+    }
+
+    .tools {
+        flex-direction: row;
+        column-gap: 5px;
+        order: 1; /* puts this as the first item in flex container, moving it from bottom to top */
+        height: initial;
+        margin-bottom: 15px;
+        align-self: start;
+    }
+
+    .tool:last-child {
+        margin: 0;
+    }
+}
+
+@media (max-width: 440px) {
+    .dd-toggle:nth-of-type(4),
+    .dd-toggle:nth-of-type(5) {
+        display: none;
+    }
+
+    .header {
+        justify-content: space-between;
+    }
+
+    .breadcrumbs__link,
+    .breadcrumbs__icon{
+        display: none;
+    }
+
+    .canvas {
+        height: 400px;
+    }
+}
