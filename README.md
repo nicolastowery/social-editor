@@ -2,7 +2,7 @@
 View live demo [here!](https://nicolastowery.github.io/social-editor/)
 ## Short Description
 
-This project was coded by Nicolas Towery as part of [Bytegrad's CSS Udemy Course.](https://www.udemy.com/course/professional-css/) It served as an introduction to CSS flexbox and modern methods for responsive web design.
+This project was coded by Nicolas Towery as part of [Bytegrad's CSS Udemy Course.](https://www.udemy.com/course/professional-css/) The project served as a method to shapren skills related to CSS flexbox and responsive web design.
 
 ## Technologies Used
 
